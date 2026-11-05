@@ -1,0 +1,9 @@
+services:
+  default:
+    build: .
+    image: when-agents-cheat-sandbox
+    command: tail -f /dev/null
+    init: true
+    network_mode: none
+    stop_grace_period: 1s
+    mem_limit: 1gb
