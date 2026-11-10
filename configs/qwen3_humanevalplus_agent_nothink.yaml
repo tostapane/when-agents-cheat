@@ -1,0 +1,24 @@
+# Qwen3-14B on HumanEval+, agent setting, thinking off.
+task: when_agents_cheat.tasks.humanevalplus:humanevalplus
+task_args:
+  max_attempts: 10
+  message_limit: 50
+
+model: ollama/qwen3:14b
+
+generate:
+  # Turns thinking off. Inspect's reasoning_effort: none doesn't reach Ollama.
+  extra_body:
+    reasoning:
+      effort: none
+
+eval:
+  max_connections: 1
+  max_samples: 1
+
+meta:
+  model: qwen3-14b
+  benchmark: humanevalplus
+  split: null
+  setting: agent
+  reasoning: no_thinking

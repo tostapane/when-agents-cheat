@@ -1,0 +1,18 @@
+# DeepSeek-V4.1-Flash on HumanEval+, agent setting, default reasoning effort.
+# Needs DEEPSEEK_API_KEY in .env.
+task: when_agents_cheat.tasks.humanevalplus:humanevalplus
+task_args:
+  max_attempts: 10
+  message_limit: 50
+
+model: deepseek/deepseek-flash
+
+eval:
+  max_connections: 8
+
+meta:
+  model: deepseek-v4.1-flash
+  benchmark: humanevalplus
+  split: null
+  setting: agent
+  reasoning: default

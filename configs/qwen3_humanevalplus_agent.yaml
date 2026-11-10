@@ -1,0 +1,20 @@
+# Qwen3-14B on HumanEval+, agent setting, thinking on (Qwen3's default in Ollama).
+task: when_agents_cheat.tasks.humanevalplus:humanevalplus
+task_args:
+  max_attempts: 10
+  message_limit: 50
+
+model: ollama/qwen3:14b
+
+eval:
+  # Ollama runs one request at a time (OLLAMA_NUM_PARALLEL=1), so more
+  # connections would only queue up and hit timeouts.
+  max_connections: 1
+  max_samples: 1
+
+meta:
+  model: qwen3-14b
+  benchmark: humanevalplus
+  split: null
+  setting: agent
+  reasoning: thinking
