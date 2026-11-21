@@ -7,7 +7,13 @@ write to `logs/<name>/`, pilot runs (`--limit`) to `logs/pilot/<name>/`.
 python scripts/run_experiment.py configs/qwen3_humanevalplus_agent.yaml --limit 5   # pilot
 python scripts/run_experiment.py configs/qwen3_humanevalplus_agent.yaml             # full run
 python scripts/run_experiment.py configs/*.yaml --dry-run                            # check only
+python scripts/run_experiment.py --retry logs/<name>/<file>.eval                     # resume a stopped run
 ```
+
+A resumed run reuses the tasks that already finished, so they aren't paid for twice. It
+writes a new log next to the old one: delete the old one afterwards, or tasks get
+counted twice. Use `--retry` rather than `inspect eval-retry`: the plain Inspect
+command can't find this project's tasks.
 
 ## Fields
 

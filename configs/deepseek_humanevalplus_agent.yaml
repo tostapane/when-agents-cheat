@@ -20,6 +20,8 @@ generate:
   top_p: 1.0
 
 eval:
+  # 3 runs per task: answers vary between runs (see DECISIONS.md).
+  epochs: 3
   max_connections: 8
 
 meta:

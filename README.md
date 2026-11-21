@@ -58,6 +58,7 @@ when-agents-cheat/
 ├── labeling/               # Labeling guide, sampled cases and manual labels
 ├── data/                   # Downloaded datasets (local only, not committed)
 ├── logs/                   # Raw run outputs (local only, not committed)
+├── DECISIONS.md            # Design choices that affect the results, and why
 ├── pyproject.toml          # The packages this project needs
 └── uv.lock                 # The exact version of every package
 ```

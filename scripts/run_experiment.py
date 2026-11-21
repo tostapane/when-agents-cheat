@@ -9,6 +9,12 @@ Run from the repo root:
 Real runs write to logs/<config name>/. Runs with --limit are pilots and write to
 logs/pilot/<config name>/, so they never mix with the real results.
 
+If a run stops early (e.g. API credits ran out), resume it from its log. Finished
+tasks are reused, not paid for again. The new log goes next to the old one; delete
+the old one afterwards so tasks aren't counted twice:
+
+    python scripts/run_experiment.py --retry logs/<config name>/<file>.eval
+
 Config format (see configs/README.md for the details):
 
     task: module.path:function     # an Inspect @task function
@@ -28,6 +34,8 @@ from pathlib import Path
 
 import yaml
 from inspect_ai import eval as inspect_eval
+from inspect_ai import eval_retry
+from inspect_ai.log import read_eval_log
 from inspect_ai.model import GenerateConfig
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -157,10 +165,23 @@ def print_stop_summary(log) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("configs", nargs="+", type=Path, help="YAML files in configs/")
+    parser.add_argument("configs", nargs="*", type=Path, help="YAML files in configs/")
     parser.add_argument("--limit", type=int, help="run only the first N tasks (pilot run)")
     parser.add_argument("--dry-run", action="store_true", help="check the configs without running anything")
+    parser.add_argument("--retry", type=Path, help="resume a stopped run from its .eval log")
     args = parser.parse_args()
+
+    if args.retry:
+        # Inspect can only rebuild the task once its module is imported. The module
+        # comes from the config this script saved in the log.
+        config = read_eval_log(str(args.retry), header_only=True).eval.metadata["config"]
+        importlib.import_module(config["task"].partition(":")[0])
+        logs = eval_retry(str(args.retry), log_dir=str(args.retry.parent))
+        for log in logs:
+            print_stop_summary(log)
+        return 0 if all(log.status == "success" for log in logs) else 1
+    if not args.configs:
+        parser.error("give at least one config, or --retry with a log file")
 
     # Check every config first, so a typo in the last one doesn't surface hours later.
     try:
