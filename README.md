@@ -54,10 +54,10 @@ when-agents-cheat/
 ├── serving/qwen3/          # Serves Qwen on the GPU machine, in its own environment
 ├── configs/                # One file per experiment: model, benchmark, setting, limits
 ├── scripts/                # Commands that start experiments
-├── analysis/               # Turns logs into tables and plots
+├── analysis/               # Turns logs into numbers: `python analysis/summarize.py`
 ├── labeling/               # Labeling guide, sampled cases and manual labels
 ├── data/                   # Downloaded datasets (local only, not committed)
-├── logs/                   # Raw run outputs (local only, not committed)
+├── logs/                   # Run outputs: real runs (logs/<config>/) are committed, pilots and smoke tests aren't
 ├── DECISIONS.md            # Design choices that affect the results, and why
 ├── pyproject.toml          # The packages this project needs
 └── uv.lock                 # The exact version of every package

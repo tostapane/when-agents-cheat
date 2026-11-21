@@ -4,5 +4,8 @@ __pycache__/
 *.egg-info/
 data/*
 !data/NOTES.md
-logs/
+# Real runs (logs/<config>/) are committed; pilots, smoke tests and stray logs are not.
+logs/pilot/
+logs/smoke/
+logs/*.eval
 *.safetensors
