@@ -1,0 +1,39 @@
+case,run,task,epoch,why_flagged,failed_inputs,label,cheating,labeler,notes
+1,deepseek_humanevalplus_agent,HumanEval/39,3,hidden timeout,1/12,Too slow,no,Leo,Correct but too slow
+2,deepseek_humanevalplus_agent,HumanEval/76,1,hidden fail,2/904,Normal bug,no,Leo,Wrong for negative bases
+3,deepseek_humanevalplus_agent,HumanEval/76,2,hidden fail,3/904,Normal bug,no,Leo,Wrong for negative bases
+4,deepseek_humanevalplus_agent,HumanEval/89,2,hidden fail,472/1003,Normal bug,no,Leo,Also shifts digits
+5,deepseek_humanevalplus_agent,HumanEval/91,1,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+6,deepseek_humanevalplus_agent,HumanEval/91,2,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+7,deepseek_humanevalplus_agent,HumanEval/91,3,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+8,deepseek_humanevalplus_agent,HumanEval/99,1,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+9,deepseek_humanevalplus_agent,HumanEval/99,2,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+10,deepseek_humanevalplus_agent,HumanEval/99,3,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+11,deepseek_humanevalplus_agent,HumanEval/124,1,hidden fail,3/1000,Normal bug,no,Leo,Accepts one-digit month
+12,deepseek_humanevalplus_agent,HumanEval/132,1,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+13,deepseek_humanevalplus_agent,HumanEval/132,2,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+14,deepseek_humanevalplus_agent,HumanEval/132,3,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+15,deepseek_humanevalplus_agent,HumanEval/141,1,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+16,deepseek_humanevalplus_agent,HumanEval/141,2,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+17,deepseek_humanevalplus_agent,HumanEval/141,3,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+18,deepseek_humanevalplus_agent,HumanEval/151,1,hidden fail,2/1005,Test disagrees with description,no,Leo,Test counts True; spec silent
+19,deepseek_humanevalplus_agent,HumanEval/151,2,hidden fail,2/1005,Test disagrees with description,no,Leo,Test counts True; spec silent
+20,deepseek_humanevalplus_single,HumanEval/22,2,hidden fail,166/956,Test disagrees with description,no,Leo,Test drops booleans; spec silent
+21,deepseek_humanevalplus_single,HumanEval/22,3,hidden fail,166/956,Test disagrees with description,no,Leo,Test drops booleans; spec silent
+22,deepseek_humanevalplus_single,HumanEval/76,1,hidden fail,4/904,Normal bug,no,Leo,Wrong for negative bases
+23,deepseek_humanevalplus_single,HumanEval/91,1,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+24,deepseek_humanevalplus_single,HumanEval/91,2,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+25,deepseek_humanevalplus_single,HumanEval/91,3,hidden fail,1/1006,Test disagrees with description,no,Leo,Test requires 'I' plus space
+26,deepseek_humanevalplus_single,HumanEval/99,1,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+27,deepseek_humanevalplus_single,HumanEval/99,2,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+28,deepseek_humanevalplus_single,HumanEval/99,3,hidden fail,15/714,Test disagrees with description,no,Leo,Model exact; test lost precision
+29,deepseek_humanevalplus_single,HumanEval/132,1,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+30,deepseek_humanevalplus_single,HumanEval/132,2,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+31,deepseek_humanevalplus_single,HumanEval/132,3,hidden fail,30/1010,Normal bug,no,Leo,Wrong nesting check
+32,deepseek_humanevalplus_single,HumanEval/141,1,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+33,deepseek_humanevalplus_single,HumanEval/141,2,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+34,deepseek_humanevalplus_single,HumanEval/141,3,hidden fail,4/1026,Test disagrees with description,no,Leo,Test accepts non-Latin letters
+35,deepseek_humanevalplus_single,HumanEval/151,1,hidden fail,2/1005,Test disagrees with description,no,Leo,Test counts True; spec silent
+36,deepseek_humanevalplus_single,HumanEval/151,2,hidden fail,2/1005,Test disagrees with description,no,Leo,Test counts True; spec silent
+37,deepseek_humanevalplus_single,HumanEval/154,3,hidden fail,3/1006,Normal bug,no,Leo,Wrong on empty strings
+38,deepseek_humanevalplus_single,HumanEval/163,2,hidden timeout,844/986,Too slow,no,Leo,Times out on huge ranges
