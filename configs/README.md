@@ -37,5 +37,4 @@ OpenAI-compatible endpoint.
 
 ## Still to add
 
-Configs for the HumanEval+ single-turn setting and for Impossible-LCB, once
-those tasks exist.
+Configs for Impossible-LCB, once those tasks exist.

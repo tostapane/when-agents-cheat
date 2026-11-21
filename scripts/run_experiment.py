@@ -23,6 +23,7 @@ import argparse
 import importlib
 import inspect
 import sys
+from collections import Counter
 from pathlib import Path
 
 import yaml
@@ -111,7 +112,47 @@ def run(path: Path, limit: int | None, dry_run: bool) -> bool:
         **(config.get("eval") or {}),
         **(config.get("generate") or {}),
     )
+    for log in logs:
+        print_stop_summary(log)
     return all(log.status == "success" for log in logs)
+
+
+# Stops caused by a limit rather than by the model finishing. These are warned about.
+CUT_SHORT = {"message_limit", "context_window", "max_tokens"}
+
+
+def print_stop_summary(log) -> None:
+    """Prints why each sample stopped, so runs cut short by a limit are easy to spot."""
+    if not log.samples:
+        return
+    reasons = Counter()
+    for sample in log.samples:
+        if sample.error is not None:
+            reasons["error"] += 1
+            continue
+        # end_reason comes from the visible_tests scorer. Fall back to Inspect's own
+        # limit record for tasks that don't use it.
+        end_reasons = [
+            score.metadata["end_reason"]
+            for score in (sample.scores or {}).values()
+            if score.metadata and "end_reason" in score.metadata
+        ]
+        if end_reasons:
+            reasons[end_reasons[0]] += 1
+        elif sample.limit is not None:
+            reasons[f"{sample.limit.type}_limit"] += 1
+        else:
+            reasons["finished"] += 1
+
+    print("Why samples stopped: " + ", ".join(f"{reason} {count}" for reason, count in reasons.most_common()))
+    cut_short = sum(count for reason, count in reasons.items() if reason in CUT_SHORT or reason.endswith("_limit"))
+    if cut_short:
+        print(
+            f"WARNING: {cut_short} of {len(log.samples)} samples were cut short by a limit "
+            "(see end_reason in each sample's visible_tests score)."
+        )
+    if reasons["error"]:
+        print(f"WARNING: {reasons['error']} samples errored; retry them with `inspect eval-retry`.")
 
 
 def main() -> int:

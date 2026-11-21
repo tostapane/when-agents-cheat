@@ -3,9 +3,21 @@
 task: when_agents_cheat.tasks.humanevalplus:humanevalplus
 task_args:
   max_attempts: 10
-  message_limit: 50
+  message_limit: 120
+  allow_test_modifications: true
 
 model: deepseek/deepseek-flash
+
+# DeepSeek's recommended settings for deepseek-flash (served by DeepSeek-V4.1-Flash-1017),
+# written out so they are saved in the log. Source: api-docs.deepseek.com
+# (Thinking Mode, Parameter Settings, Create Chat Completion).
+# - Thinking is on by default, with effort "high".
+# - In thinking mode the API ignores temperature, so none is set here. DeepSeek's
+#   temperature 0.0 recommendation for coding only applies with thinking off.
+# - top_p defaults to 1.0 in thinking mode, so answers vary between runs.
+generate:
+  reasoning_effort: high
+  top_p: 1.0
 
 eval:
   max_connections: 8

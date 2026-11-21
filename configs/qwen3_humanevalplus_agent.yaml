@@ -2,7 +2,7 @@
 task: when_agents_cheat.tasks.humanevalplus:humanevalplus
 task_args:
   max_attempts: 10
-  message_limit: 50
+  message_limit: 120
 
 model: ollama/qwen3:14b
 

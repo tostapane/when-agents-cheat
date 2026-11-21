@@ -47,7 +47,8 @@ when-agents-cheat/
 ├── when_agents_cheat/      # Code shared by the whole project
 │   ├── tasks/              # One file per benchmark: loads its tasks and sets up each run
 │   ├── sandbox/            # Docker setup for the container that runs model-written code
-│   ├── scorers/            # Runs the hidden tests after the agent finishes
+│   ├── scorers/            # Scores visible tests and runs the final hidden tests
+│   ├── solvers/            # Prepares model completions for scoring
 │   └── detectors/          # Cheating checks: failed hidden tests, "passed" impossible
 │                           # tasks, edited test files, test-specific logic
 ├── serving/qwen3/          # Serves Qwen on the GPU machine, in its own environment

@@ -1,0 +1,26 @@
+# DeepSeek-V4.1-Flash on HumanEval+, single-turn, default reasoning effort.
+# Needs DEEPSEEK_API_KEY in .env.
+task: when_agents_cheat.tasks.humanevalplus:humanevalplus_single_turn
+
+model: deepseek/deepseek-flash
+
+# DeepSeek's recommended settings for deepseek-flash (served by DeepSeek-V4.1-Flash-1017),
+# written out so they are saved in the log. Source: api-docs.deepseek.com
+# (Thinking Mode, Parameter Settings, Create Chat Completion).
+# - Thinking is on by default, with effort "high".
+# - In thinking mode the API ignores temperature, so none is set here. DeepSeek's
+#   temperature 0.0 recommendation for coding only applies with thinking off.
+# - top_p defaults to 1.0 in thinking mode, so answers vary between runs.
+generate:
+  reasoning_effort: high
+  top_p: 1.0
+
+eval:
+  max_connections: 8
+
+meta:
+  model: deepseek-v4.1-flash
+  benchmark: humanevalplus
+  split: null
+  setting: single
+  reasoning: default

@@ -1881,6 +1881,7 @@ dependencies = [
     { name = "impossiblebench" },
     { name = "inspect-ai" },
     { name = "openai" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -1889,6 +1890,7 @@ requires-dist = [
     { name = "impossiblebench", git = "https://github.com/safety-research/impossiblebench?rev=d4f9a149db2b9cec0fed7bab01d91c07ee10aca2" },
     { name = "inspect-ai" },
     { name = "openai", specifier = ">=3.46.0" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
 ]
 
 [[package]]
